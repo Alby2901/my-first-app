@@ -1,20 +1,14 @@
 <div class="container">
+  <app-cockpit 
+  (serverCreated)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+  <hr>
   <div class="row">
-    <h1>
-      Welcome to "{{ title }}"!
-    </h1>
-
-    <h3>
-      Cu Cu! "{{ title }}"!
-    </h3>
-
-    <input type="text" [(ngModel)]="name">
-    <br>
-    <p>Look here: => {{ name }}</p>
-    <br />
-    <button type="button" class="btn btn-primary">Primary</button>
-    <br />
-    <app-servers></app-servers>
+    <div class="col-xs-12">
+      <app-server-element
+      *ngFor="let serverElement of serverElements"
+      [srvElement]="serverElement"></app-server-element>
+    </div>
   </div>
 </div>
-<hr>
