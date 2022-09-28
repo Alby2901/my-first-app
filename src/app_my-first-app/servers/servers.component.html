@@ -1,0 +1,46 @@
+<hr style="height:2px;border-width:0;color:red;background-color:red">
+<p>This is ServerS Component</p>
+<br><br>
+<label>User Name </label>
+<!-- <input type="text" [(ngModel)]="userName"> -->
+<input type="text" class="form-control" (input)="onUpdateUserName($event)" [value]="userName">
+<br>
+<p>User name => {{ userName}} </p>
+<br>
+<button class="btn btn-outline-primary" [disabled]="userNameEmpty" (click)="onClear()"> Clear </button>
+
+<hr style="height:2px;border-width:0;color:red;background-color:red">
+
+<br><br>
+<label>Password:  </label>
+<input type="text" class="form-control" [(ngModel)]="passWord" [value]="passWord">
+<br>
+<p>Password => {{ passWord }} </p>
+<br>
+<button class="btn btn-outline-info" [disabled]="passWord === ''" (click)="passWord =''"> Clear Password</button>
+
+<hr style="height:2px;border-width:0;color:red;background-color:red">
+
+<label>Server Name </label>
+<input type="text" class="form-control" [(ngModel)]="serverName">
+<br>
+<!-- <p>{{ serverName }}</p> -->
+<button class="btn btn-primary" 
+    [disabled]="!allowNewServer" 
+    (click)="onCreateServer()">Add Server</button>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
+<ng-template #noServer>
+    <p>No Server was created!</p>
+</ng-template>
+
+<br>
+<br>
+<p>Il valore di allowNewServer è {{ allowNewServer }}</p>
+<p [innerText]="allowNewServer"></p>
+
+<hr style="height:2px;border-width:0;color:red;background-color:red">
+
+<app-server *ngFor="let server of servers"></app-server>
+<app-warningalert></app-warningalert>
+<app-successalert></app-successalert>
