@@ -1,0 +1,10 @@
+<!-- <p>list-counts works!</p> -->
+<app-odd *ngIf="countState1 === 'pari'" style="color: red"
+[count]="count1"
+[countState]="countState1">
+<p #paragraphOdd>odd works! - Il valore {{ count1 }} è {{ countState1 }}</p>
+</app-odd>
+<app-even *ngIf="countState1 === 'dispari'" style="color: rgb(11, 87, 2)"
+[count]="count1"
+[countState]="countState1">
+</app-even>

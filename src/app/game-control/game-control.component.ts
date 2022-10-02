@@ -6,22 +6,22 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent implements OnInit {
-  @Output() startPressed = new EventEmitter<any>();
-  @Output() stopPressed = new EventEmitter<any>();
+  @Output() startPressed = new EventEmitter<string>();
+  @Output() stopPressed = new EventEmitter<string>();
   
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onClickStart(){
+  onClickStart(messg: string){
     console.log('Premuto Start');
-    this.startPressed.emit()
+    this.startPressed.emit(messg)
   }
 
-  onClickStop(){
-    console.log('Premuto Stop');
-    this.stopPressed.emit()
+  onClickStop(messg: string){
+    console.log('Premuto stop');
+    this.stopPressed.emit(messg)
   }
 
 }

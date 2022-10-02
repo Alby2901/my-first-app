@@ -1,23 +1,48 @@
 <div class="container">
-  <app-cockpit (serverCreated)="onServerAdded($event)" (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
+  <app-cockpit (serverCreated)="onServerAdded($event)" 
+               (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
   <hr>
   <div class="row">
     <div class="col-xs-12">
       <button class="btn btn-primary" (click)="onChangeFirst()">Change</button>
       <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy</button>
-      <app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement"
+      <app-server-element *ngFor="let serverElement of serverElements" 
+        [srvElement]="serverElement"
         [name]="serverElement.name">
 
         <p #contentParagraph>
           <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
           <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p>
-
       </app-server-element>
-      <app-game-control (startPressed)="onButtonStartPressed()" (stopPressed)="onButtonStopPressed()"></app-game-control>
-      <app-odd *ngIf="statoConteggio === 'pari'" style="color: red"></app-odd>
-      <app-even *ngIf="statoConteggio === 'dispari'" style="color: rgb(11, 87, 2)"></app-even>
 
+      <!-- ---------------------------------------------------------------------- -->
+
+      <hr style="border-top: 2px solid red">
+      <h1>Assignament Binding (app component)</h1>
+      Messaggio => {{ msg }} <=
+      <hr style="border-top: 2px dashed blue">
+      <app-game-control (startPressed)="onButtonStartPressed($event)" 
+                        (stopPressed)="onButtonStopPressed($event)">
+      </app-game-control>
+      <app-odd *ngIf="statoConteggio === 'pari'" style="color: red"
+        [count]="conteggio"
+        [countState]="statoConteggio">
+        <p #paragraphOdd>odd (ng-content) works!
+           - Il valore {{ conteggio }} è {{ statoConteggio }}</p>
+      </app-odd>
+      <app-even *ngIf="statoConteggio === 'dispari'" style="color:  blue"
+        [count]="conteggio"
+        [countState]="statoConteggio">
+      </app-even>
+
+      <!-- ---------------------------------------------------------------------- -->
+
+      <app-list-counts [hidden]="nascosto" *ngFor="let item of conteggi"
+      [count1]="item.ctg"
+      [countState1]="item.ctgSt">
+      </app-list-counts>
+  
     </div>
   </div>
 </div>

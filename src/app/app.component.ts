@@ -11,6 +11,9 @@ export class AppComponent implements OnInit, AfterContentChecked {
   conteggio: number = 0;
   statoConteggio: string = '';
   myInterval: any;
+  msg:string;
+  nascosto = true; 
+  conteggi: [{ctg: number, ctgSt: string}] = [{ctg: 0, ctgSt: 'non definito'}];
 
   ngOnInit(): void {
     // if (this.conteggio % 2 == 0) {
@@ -28,7 +31,13 @@ export class AppComponent implements OnInit, AfterContentChecked {
     // }  
   }
 
-  onButtonStartPressed() {
+  onButtonStartPressed(messaggio: string) {
+    this.nascosto = true;
+    this.msg = messaggio;
+    console.log('app =>> Start pressed');
+    console.log('app =>> this.msg > ' + this.msg);
+    this.conteggio = 0;
+    this.conteggi = [{ctg: 0, ctgSt: 'non definito'}];
     this.myInterval = setInterval(
       () => {
         this.conteggio += 1;
@@ -37,14 +46,20 @@ export class AppComponent implements OnInit, AfterContentChecked {
         } else {
           this.statoConteggio = 'dispari'
         } 
+        this.conteggi.push({ctg: this.conteggio, ctgSt: this.statoConteggio}); 
+        // this.conteggi.push({ctg: 3, ctgSt: 'pluto'}); 
         console.log('conteggio  vale => ' + this.conteggio);
         console.log('statoConteggio  vale => ' + this.statoConteggio);
       }, 1000);
   }
 
-  onButtonStopPressed() {
+  onButtonStopPressed(messaggio: string) {
+    this.msg = messaggio;
     console.log('app =>> Stop pressed');
+    console.log('app =>> this.msg > ' + this.msg);
+    console.log('app =>> this.conteggi > ' + this.conteggi.toString());
     clearInterval(this.myInterval);
+    this.nascosto = false; 
   }
 
   onServerAdded(serverData: { serverName: string, serverContent: string }) {
