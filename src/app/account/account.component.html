@@ -1,17 +1,23 @@
 <div class="row">
   <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <h5>{{ account.name }}</h5>
+    <h5>{{ account.name }} (id:{{ id }})</h5>
     <hr>
     <p>This account is {{ account.status }}</p>
 
     <button class="btn btn btn-outline-secondary btn-sm"
-    (click)="onSetTo('active')">Set to 'active'</button>
+    (click)="onSetTo('active')"
+    [disabled]="account.status === 'active'"
+    >Set to 'active'</button>
 
     <button class="btn btn btn-outline-secondary btn-sm"
-    (click)="onSetTo('inactive')">Set to 'inactive'</button>
+    (click)="onSetTo('inactive')"
+    [disabled]="account.status === 'inactive'"
+    >Set to 'inactive'</button>
 
     <button class="btn btn btn-outline-secondary btn-sm"
-    (click)="onSetTo('unknown')">Set to 'unknown'</button>
+    (click)="onSetTo('unknown')"
+    [disabled]="account.status === 'unknown'"
+    >Set to 'unknown'</button>
   </div>
 </div>
 
