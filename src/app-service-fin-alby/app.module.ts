@@ -2,22 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { AccountService } from './service/account.service';
+
 import { AppComponent } from './app.component';
-import { ActiveUsersComponent } from './active-users/active-users.component';
-import { InactiveUsersComponent } from './inactive-users/inactive-users.component';
-import { UsersService } from './service/users.service';
+import { AccountComponent } from './account/account.component';
+import { NewAccountComponent } from './new-account/new-account.component';
+import { LoggingService } from './service/loggin.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ActiveUsersComponent,
-    InactiveUsersComponent
+    AccountComponent,
+    NewAccountComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
   ],
-  providers: [UsersService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

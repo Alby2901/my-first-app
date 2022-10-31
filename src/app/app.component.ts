@@ -1,26 +1,31 @@
 import { Component } from '@angular/core';
-import { AccountService } from './service/account.service';
+import { UsersService } from './service/users.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-
 })
 export class AppComponent {
+  // activeUsers = ['Max', 'Anna'];
+  // inactiveUsers = ['Chris', 'Manu'];
 
-  constructor(private accountSrv: AccountService){}
+  activeUsers = this.usersService.activeUsers;
+  inactiveUsers = this.usersService.inactiveUsers;
 
-  accounts = this.accountSrv.getAccounts();
+constructor(private usersService: UsersService){}
 
-  onAccountAdded(newAccount: {name: string, status: string}) {
-    // this.accounts.push(newAccount);
-    this.accountSrv.addAccount(newAccount);
+  onSetToInactive(id: number) {
+    // this.inactiveUsers.push(this.activeUsers[id]);
+    // this.activeUsers.splice(id, 1);
+    this.usersService.setToInactive(id);
   }
 
-  onStatusChanged(updateInfo: {id: number, newStatus: string}) {
-    // this.accounts[updateInfo.id].status = updateInfo.newStatus;
-    // const updInf = updateInfo;
-    this.accountSrv.changeStatus(updateInfo)
+  onSetToActive(id: number) {
+    // this.activeUsers.push(this.inactiveUsers[id]);
+    // this.inactiveUsers.splice(id, 1);
+    this.usersService.setToActive(id);
+
+
   }
 }

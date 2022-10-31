@@ -6,13 +6,19 @@ import { LoggingService } from '../service/loggin.service';
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
   styleUrls: ['./new-account.component.css'],
-  providers: [LoggingService]
+  // providers: [LoggingService]
 })
 export class NewAccountComponent {
   // @Output() accountAdded = new EventEmitter<{name: string, status: string}>();
 
   constructor(private logginSrv: LoggingService,
-              private accountSrv: AccountService){}
+              private accountSrv: AccountService){
+                this.accountSrv.statusUpdated.subscribe(
+                  (status:string) => {
+                    alert('lo stato è cambiato in: ' + status)
+                  }
+                )
+              }
 
   onCreateAccount(accountName: string, accountStatus: string) {
     // this.accountAdded.emit({ name: accountName, status: accountStatus});

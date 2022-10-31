@@ -6,7 +6,7 @@ import { LoggingService } from '../service/loggin.service';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService]
+  // providers: [LoggingService]
 
 })
 export class AccountComponent {
@@ -29,5 +29,7 @@ export class AccountComponent {
     this.accountSvr.changeStatus(updInfo)
 
     this.logginSrv.logStatusChange(acc)
+
+    this.accountSvr.statusUpdated.emit(status);
   }
 }
